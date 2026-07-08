@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Theme Yay — Vinyl Records</title>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="style.css">
 <script src="script.js" defer></script>
 </head>
 <body>
@@ -26,7 +26,7 @@
   </form>
 </div>
 
-<!-- 2. HOME SCREEN -->
+<!-- HOME SCREEN -->
 
 <div id="homeScreen" class="screen" style="display:none;">
  
@@ -88,3 +88,25 @@
   </main>
  
 </div>
+
+<!-- CART SCREEN -->
+ 
+<div id="cartScreen" class="screen" style="display:none;">
+ 
+  <header>
+    <h1>Your Cart</h1>
+    <nav>
+      <button type="button" id="backToHomeBtn">Back to shop</button>
+    </nav>
+  </header>
+ 
+  <main>
+    <div id="cartItems">
+    </div>
+    <p id="cartEmptyMsg">Your cart is empty. Go look for records.</p>
+  </main>
+ 
+</div>
+ 
+</body>
+</html>
