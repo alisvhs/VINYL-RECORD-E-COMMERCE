@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theme Yay — Vinyl Records</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+
+<div id="loginScreen" class="screen active">
+  <h1>Theme Yay's Vinyls</h1>
+  <p>Sign in to browse this week's vinyls.</p>
+
+  <form id="loginForm">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username">
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password">
+
+    <button type="submit">Sign In</button>
+  </form>
+</div>
+
+<!-- 2. HOME SCREEN -->
+
+<div id="homeScreen" class="screen" style="display:none;">
+ 
+  <header>
+    <h1>Theme Yay's Vinyls</h1>
+    <nav>
+      <button type="button" id="cartNavBtn">Cart (<span id="cartCount">0</span>)</button>
+      <button type="button" id="logoutBtn">Log out</button>
+    </nav>
+  </header>
+ 
+  <main>
+    <h2>This Week's Vinyls</h2>
+    <div id="productGrid" class="product-grid">
+ 
+      <article class="product-card">
+        <h3>Paradise</h3>
+        <p>Lana Del Rey</p>
+        <p>₱1,650</p>
+        <button type="button" class="add-btn">Add to Cart</button>
+      </article>
+ 
+      <article class="product-card">
+        <h3>Ctrl</h3>
+        <p>SZA</p>
+        <p>₱1,250</p>
+        <button type="button" class="add-btn">Add to Cart</button>
+      </article>
+ 
+      <article class="product-card">
+        <h3>I Know I'm Funny haha</h3>
+        <p>Faye Webster</p>
+        <p>₱900</p>
+        <button type="button" class="add-btn">Add to Cart</button>
+      </article>
+ 
+      <article class="product-card">
+        <h3>Raven</h3>
+        <p>Kelela</p>
+        <p>₱1,450</p>
+        <button type="button" class="add-btn">Add to Cart</button>
+      </article>
+ 
+      <article class="product-card">
+        <h3>Imaginal Disk</h3>
+        <p>Magdalena Bay</p>
+        <p>₱900</p>
+        <button type="button" class="add-btn">Add to Cart</button>
+      </article>
+ 
+      <article class="product-card">
+        <h3>Fancy That</h3>
+        <p>PinkPantheress</p>
+        <p>₱1,500</p>
+        <button type="button" class="add-btn">Add to Cart</button>
+      </article>
+ 
+    </div>
+  </main>
+ 
+</div>
