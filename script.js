@@ -15,12 +15,12 @@ const cartEmptyMsg = document.getElementById("cartEmptyMsg");
 const addButtons = document.querySelectorAll(".add-btn");
 
 const PRODUCTS = [
-  { title: "Paradise", artist: "Lana Del Rey", price: 1650, cover: "PARADISE.png" },
-  { title: "Ctrl", artist: "SZA", price: 1250, cover: "CTRL.png" },
-  { title: "I Know I'm Funny haha", artist: "Faye Webster", price: 900, cover: "IKNOWIMFUNNYHAHA.png" },
-  { title: "Raven", artist: "Kelela", price: 1450, cover: "RAVEN.png" },
-  { title: "Imaginal Disk", artist: "Magdalena Bay", price: 900, cover: "IMAGINALDISK.png" },
-  { title: "Fancy That", artist: "PinkPantheress", price: 1500, cover: "FANCYTHAT.png" }
+  { title: "Paradise", artist: "Lana Del Rey", price: 1650, cover: "IMAGES/PARADISE.png" },
+  { title: "Ctrl", artist: "SZA", price: 1250, cover: "IMAGES/CTRL.png" },
+  { title: "I Know I'm Funny haha", artist: "Faye Webster", price: 900, cover: "IMAGES/IKNOWIMFUNNYHAHA.png" },
+  { title: "Raven", artist: "Kelela", price: 1450, cover: "IMAGES/RAVEN.png" },
+  { title: "Imaginal Disk", artist: "Magdalena Bay", price: 900, cover: "IMAGES/IMAGINALDISK.png" },
+  { title: "Fancy That", artist: "PinkPantheress", price: 1500, cover: "IMAGES/FANCYTHAT.png" }
 ];
 
 let cart = [];
@@ -29,7 +29,11 @@ let cart = [];
 
 function showScreen(screenToShow) {
   [loginScreen, homeScreen, cartScreen].forEach((screen) => {
-    screen.style.display = (screen === screenToShow) ? "block" : "none";
+    if (screen === screenToShow) {
+      screen.style.display = (screen === loginScreen) ? "flex" : "block";
+    } else {
+      screen.style.display = "none";
+    }
   });
 }
 
