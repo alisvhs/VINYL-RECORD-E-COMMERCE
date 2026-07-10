@@ -59,7 +59,7 @@ backToHomeBtn.addEventListener("click", function () {
   showScreen(homeScreen);
 });
 
-/* Add to Cart */
+/* Add to cart */
 addButtons.forEach((btn, index) => {
   btn.addEventListener("click", function () {
     const product = PRODUCTS[index];
@@ -71,6 +71,16 @@ addButtons.forEach((btn, index) => {
     }
     updateCartUI();
   });
+});
+
+/* Remove from cart */
+
+cartItemsEl.addEventListener("click", function (e) {
+  if (e.target.classList.contains("remove-btn")) {
+    const title = e.target.dataset.title;
+    cart = cart.filter((item) => item.title !== title);
+    updateCartUI();
+  }
 });
 
 function formatPrice(amount) {
@@ -100,6 +110,7 @@ function updateCartUI() {
       <p>${item.artist}</p>
       <p>Qty: ${item.qty}</p>
       <p>${formatPrice(item.price * item.qty)}</p>
+      <button class="remove-btn" data-title="${item.title}">Remove</button>
     </div>
   `).join("");
 

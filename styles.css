@@ -378,6 +378,13 @@ header button:hover {
   text-align: right;
 }
 
+.remove-btn {
+  grid-column: 4;
+  grid-row: 2;
+  font-size: 0.7rem;
+  padding: 6px 10px;
+}
+
 .cart-total {
   display: flex;
   justify-content: space-between;
