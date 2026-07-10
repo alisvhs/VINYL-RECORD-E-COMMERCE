@@ -70,7 +70,21 @@ h1, h2, h3 { margin: 0; }
   position: relative;
   z-index: 1;
   min-height: 100vh;
+  animation: fadeIn 0.4s ease;
 }
+
+/* Transition/animation */
+
+@keyframes fadeIn {
+   from {
+     opacity: 0;
+     transform: translateY(10px);
+   }
+   to {
+     opacity: 1;
+     transform: translateY(0);
+   }
+ }
 
 /* LOGIN SCREEN */
 
@@ -346,7 +360,35 @@ header button:hover {
   border-radius: var(--radius);
   padding: 16px 20px;
   box-shadow: 3px 3px 8px rgba(35, 33, 31, 0.18);
+  animation: cartItemIn 0.3s ease;
 }
+
+.cart-item.removing {
+  animation: slideOutLeft 0.3s ease forwards;
+  pointer-events: none;
+ }
+ 
+ @keyframes cartItemIn {
+   from {
+     opacity: 0;
+     transform: translateX(20px);
+   }
+   to {
+     opacity: 1;
+     transform: translateX(0);
+   }
+ }
+ 
+ @keyframes slideOutLeft {
+   from {
+     opacity: 1;
+     transform: translateX(0);
+   }
+   to {
+     opacity: 0;
+     transform: translateX(-100%);
+   }
+ }
 
 .cart-cover {
   grid-column: 1;
