@@ -26,7 +26,7 @@
   <h2>Resources</h2>
   <div class="resource-list">
     <div class="resource-item">
-      <h3>Shipping & Returns</h3>
+      <h3>Shipping &amp; Returns</h3>
       <p>Everything you need to know about how we pack and ship your vinyls, plus our return policy.</p>
     </div>
     <div class="resource-item">
@@ -40,11 +40,11 @@
   </div>
 </main>
  
-</body>
 <script>
   const savedCart = localStorage.getItem("theme_yay_cart");
   const cart = savedCart ? JSON.parse(savedCart) : [];
   const total = cart.reduce((sum, item) => sum + item.qty, 0);
   document.getElementById("cartCount").textContent = total;
 </script>
+</body>
 </html>

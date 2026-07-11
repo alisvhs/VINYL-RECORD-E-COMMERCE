@@ -30,12 +30,12 @@
     <p>Theme Yay's Vinyls started as a small student project born out of a love for vinyl and 80s indie aesthetics. We wanted to build a place where record lovers could browse a curated shelf of albums that shaped bedroom pop, hyperpop, and alt R&B, wrapped in a warm, retro storefront feel.</p>
   </div>
 </section>
- 
-</body>
+
 <script>
   const savedCart = localStorage.getItem("theme_yay_cart");
   const cart = savedCart ? JSON.parse(savedCart) : [];
   const total = cart.reduce((sum, item) => sum + item.qty, 0);
   document.getElementById("cartCount").textContent = total;
 </script>
+</body>
 </html>
