@@ -1,6 +1,7 @@
 const loginScreen = document.getElementById("loginScreen");
 const homeScreen = document.getElementById("homeScreen");
 const cartScreen = document.getElementById("cartScreen");
+const checkoutScreen = document.getElementById("checkoutScreen");
  
 const loginForm = document.getElementById("loginForm");
 const logoutBtn = document.getElementById("logoutBtn");
@@ -14,6 +15,11 @@ const cartCountEl = document.getElementById("cartCount");
 const cartItemsEl = document.getElementById("cartItems");
 const cartEmptyMsg = document.getElementById("cartEmptyMsg");
 const addButtons = document.querySelectorAll(".add-btn");
+const checkoutBtn = document.getElementById("checkoutBtn");
+const backToCartBtn = document.getElementById("backToCartBtn");
+const checkoutSummaryEl = document.getElementById("checkoutSummary");
+const checkoutTotalPriceEl = document.getElementById("checkoutTotalPrice");
+const checkoutForm = document.getElementById("checkoutForm");
 
 const PRODUCTS = [
   { title: "Paradise", artist: "Lana Del Rey", price: 1650, cover: "IMAGES/PARADISE.png" },
@@ -36,10 +42,11 @@ function saveCart() {
 }
 
 let cart = loadCart();
+
 /* Shows one screen, hides the other */
 
 function showScreen(screenToShow) {
-  [loginScreen, homeScreen, cartScreen].forEach((screen) => {
+  [loginScreen, homeScreen, cartScreen, checkoutScreen].forEach((screen) => {
     if (screen === screenToShow) {
       screen.style.display = (screen === loginScreen) ? "flex" : "block";
     } else {
@@ -77,6 +84,27 @@ backToHomeBtn.addEventListener("click", function () {
   showScreen(homeScreen);
 });
 
+/* Cart -> Checkout */
+checkoutBtn.addEventListener("click", function () {
+  renderCheckoutSummary();
+  showScreen(checkoutScreen);
+});
+
+/* Checkout -> Cart */
+backToCartBtn.addEventListener("click", function () {
+  showScreen(cartScreen);
+});
+
+/* Place order */
+checkoutForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  cart = [];
+  saveCart();
+  updateCartUI();
+  checkoutForm.reset();
+  showScreen(homeScreen);
+});
+
 /* Add to cart */
 addButtons.forEach((btn, index) => {
   btn.addEventListener("click", function () {
@@ -86,7 +114,6 @@ addButtons.forEach((btn, index) => {
       existing.qty += 1;
     } else {
       cart.push({ ...product, qty: 1 });
-      saveCart();
     }
     saveCart();
     updateCartUI();
@@ -107,6 +134,32 @@ cartItemsEl.addEventListener("click", function (e) {
       updateCartUI();
     }, { once: true });
   }
+  if (e.target.classList.contains("qty-increase")) {
+    const title = e.target.dataset.title;
+    const item = cart.find((item) => item.title === title);
+    item.qty += 1;
+    saveCart();
+    updateCartUI();
+  }
+
+  if (e.target.classList.contains("qty-decrease")) {
+    const title = e.target.dataset.title;
+    const item = cart.find((item) => item.title === title);
+
+    if (item.qty > 1) {
+      item.qty -= 1;
+      saveCart();
+      updateCartUI();
+    } else {
+      const itemEl = e.target.closest(".cart-item");
+      itemEl.classList.add("removing");
+      itemEl.addEventListener("animationend", function () {
+        cart = cart.filter((item) => item.title !== title);
+        saveCart();
+        updateCartUI();
+      }, { once: true });
+    }
+  }
 });
 
 function formatPrice(amount) {
@@ -123,19 +176,25 @@ function updateCartUI() {
     cartItemsEl.innerHTML = "";
     cartEmptyMsg.style.display = "block";
     cartTotalEl.style.display = "none";
+    checkoutBtn.style.display = "none";
     return;
   }
 
   cartEmptyMsg.style.display = "none";
   cartTotalEl.style.display = "flex";
+  checkoutBtn.style.display = "block";
 
   cartItemsEl.innerHTML = cart.map((item) => `
     <div class="cart-item">
       <img class="cart-cover" src="${item.cover}" alt="${item.title} cover">
       <h3>${item.title}</h3>
-      <p>${item.artist}</p>
-      <p>Qty: ${item.qty}</p>
-      <p>${formatPrice(item.price * item.qty)}</p>
+      <p class="cart-artist">${item.artist}</p>
+      <div class="qty-controls">
+        <button type="button" class="qty-btn qty-decrease" data-title="${item.title}">-</button>
+        <span class="qty-value">${item.qty}</span>
+        <button type="button" class="qty-btn qty-increase" data-title="${item.title}">+</button>
+      </div>
+      <p class="cart-price">${formatPrice(item.price * item.qty)}</p>
       <button class="remove-btn" data-title="${item.title}">Remove</button>
     </div>
   `).join("");
@@ -151,3 +210,15 @@ if (window.location.hash === "#cart") {
 if (window.location.hash === "#home") {
    showScreen(homeScreen);
  }
+
+ function renderCheckoutSummary() {
+  checkoutSummaryEl.innerHTML = cart.map((item) => `
+    <div class="checkout-item">
+      <span>${item.title} (x${item.qty})</span>
+      <span>${formatPrice(item.price * item.qty)}</span>
+    </div>
+  `).join("");
+
+  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  checkoutTotalPriceEl.textContent = formatPrice(totalPrice);
+}

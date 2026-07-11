@@ -384,7 +384,7 @@ header button:hover {
 
 .cart-item {
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
+  grid-template-columns: auto 1fr auto auto auto;
   grid-template-rows: auto auto;
   align-items: center;
   gap: 10px 20px;
@@ -441,20 +441,54 @@ header button:hover {
   color: var(--c4-ink);
 }
 
-.cart-item p {
+.cart-artist {
+  grid-column: 2;
+  grid-row: 2;
   margin: 0;
   font-family: var(--f-serif);
   color: var(--c6-umber);
 }
 
-.cart-item p:last-child {
+.cart-price {
+  grid-column: 4;
+  grid-row: 2;
+  margin: 0;
   font-weight: 600;
+  font-family: var(--f-serif);
   color: var(--c2-wine);
   text-align: right;
 }
 
+.qty-controls {
+  grid-column: 3;
+  grid-row: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty-btn {
+  font-family: var(--f-shout);
+  font-size: 0.9rem;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qty-value {
+  font-family: var(--f-serif);
+  font-weight: 600;
+  color: var(--c4-ink);
+  min-width: 20px;
+  text-align: center;
+}
+
 .remove-btn {
-  grid-column: 4;
+  grid-column: 5;
   grid-row: 2;
   font-size: 0.7rem;
   padding: 6px 10px;
@@ -585,4 +619,37 @@ header button:hover {
   font-size: 1rem;
   color: var(--c4-ink);
   resize: vertical;
+}
+
+.checkout-btn {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.checkout-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.checkout-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--c1-parchment);
+  border: 2px solid var(--c6-umber);
+  border-radius: var(--radius);
+  padding: 14px 20px;
+  font-family: var(--f-serif);
+  color: var(--c4-ink);
+}
+
+.checkout-item span:last-child {
+  font-weight: 600;
+  color: var(--c2-wine);
+}
+
+#checkoutForm {
+  margin-top: 32px;
 }
