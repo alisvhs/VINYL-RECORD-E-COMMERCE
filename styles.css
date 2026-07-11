@@ -167,6 +167,7 @@ main h2 {
   transition: 0.2s;
   display: flex;
   flex-direction: column;
+  cursor: pointer;  /* make whole card clickable */
 }
 .product-card:hover {
   transform: translateY(-4px);
@@ -180,23 +181,27 @@ main h2 {
   border-radius: 1rem;
   background: #f0ebe6;
   margin-bottom: 0.75rem;
+  pointer-events: none; /* prevent click on image interfering */
 }
 .product-card h3 {
   font-size: 1.2rem;
   font-weight: 600;
   color: #1e1e2a;
   margin-bottom: 0.1rem;
+  pointer-events: none;
 }
 .product-card .artist {
   font-size: 0.9rem;
   color: #6b6b7a;
   margin-bottom: 0.2rem;
+  pointer-events: none;
 }
 .product-card .price {
   font-weight: 600;
   font-size: 1.1rem;
   color: #1e1e2a;
   margin-bottom: 0.4rem;
+  pointer-events: none;
 }
 .product-card .description {
   font-size: 0.85rem;
@@ -204,11 +209,13 @@ main h2 {
   line-height: 1.4;
   margin-bottom: 0.75rem;
   flex: 1;
+  pointer-events: none;
 }
 .product-card .button-group {
   display: flex;
   gap: 0.5rem;
   margin-top: auto;
+  pointer-events: auto; /* buttons are clickable */
 }
 .product-card .button-group button {
   flex: 1;
@@ -303,36 +310,40 @@ main h2 {
   padding: 2rem 0;
 }
 
-/* ---------- BUY NOW MODAL ---------- */
-.modal {
+/* ---------- POP-UP CARD (MODAL) ---------- */
+.popup-overlay {
   display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 1.5rem;
 }
-.modal-content {
+.popup-overlay.active {
+  display: flex;
+}
+.popup-card {
   background: #fff9f5;
   max-width: 420px;
-  width: 90%;
+  width: 100%;
   border-radius: 2rem;
-  padding: 2rem 1.5rem 1.8rem;
-  position: relative;
+  padding: 2rem 1.8rem;
   text-align: center;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.2);
-  animation: modalFade 0.25s ease;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+  animation: popIn 0.3s ease;
+  position: relative;
 }
-@keyframes modalFade {
-  0% { opacity: 0; transform: scale(0.96); }
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.9); }
   100% { opacity: 1; transform: scale(1); }
 }
-.close-modal {
+.popup-card .close-btn {
   position: absolute;
   top: 0.75rem;
   right: 1.25rem;
@@ -340,48 +351,51 @@ main h2 {
   font-weight: 300;
   color: #6b6b7a;
   cursor: pointer;
+  background: none;
+  border: none;
+  transition: 0.2s;
 }
-.close-modal:hover {
+.popup-card .close-btn:hover {
   color: #1e1e2a;
 }
-.modal-content img {
-  width: 140px;
-  height: 140px;
+.popup-card img {
+  width: 160px;
+  height: 160px;
   object-fit: cover;
   border-radius: 1rem;
   background: #f0ebe6;
   margin-bottom: 0.75rem;
 }
-.modal-content h2 {
+.popup-card h2 {
   font-size: 1.6rem;
   font-weight: 600;
   color: #1e1e2a;
   margin-bottom: 0.1rem;
 }
-.modal-artist {
+.popup-card .popup-artist {
   font-size: 1rem;
   color: #6b6b7a;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
-.modal-description {
+.popup-card .popup-price {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #1e1e2a;
+  margin: 0.5rem 0;
+}
+.popup-card .popup-description {
   font-size: 0.95rem;
   color: #4a4a5a;
-  line-height: 1.5;
-  margin: 0.75rem 0 1rem;
+  line-height: 1.6;
+  margin: 0.5rem 0 1.25rem;
 }
-.modal-price {
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: #1e1e2a;
-  margin-bottom: 1.25rem;
-}
-.modal-buttons {
+.popup-card .popup-buttons {
   display: flex;
   gap: 0.75rem;
 }
-.modal-buttons button {
+.popup-card .popup-buttons button {
   flex: 1;
-  padding: 0.75rem 0.5rem;
+  padding: 0.75rem;
   border: none;
   border-radius: 40px;
   font-weight: 600;
@@ -389,18 +403,18 @@ main h2 {
   cursor: pointer;
   transition: 0.2s;
 }
-#modalAddToCart {
+.popup-card .btn-add {
   background: #1e1e2a;
   color: white;
 }
-#modalAddToCart:hover {
+.popup-card .btn-add:hover {
   background: #3a3a4a;
 }
-#modalBuyNow {
+.popup-card .btn-buy {
   background: #d4c9c0;
   color: #1e1e2a;
 }
-#modalBuyNow:hover {
+.popup-card .btn-buy:hover {
   background: #c5b8ad;
 }
 
@@ -412,4 +426,6 @@ main h2 {
   .nav-links { justify-content: center; flex-wrap: wrap; gap: 0.75rem; }
   .product-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; }
   .product-card { padding: 1rem 0.75rem; }
+  .popup-card { padding: 1.5rem 1.2rem; }
+  .popup-card img { width: 120px; height: 120px; }
 }
