@@ -20,14 +20,26 @@ const backToCartBtn = document.getElementById("backToCartBtn");
 const checkoutSummaryEl = document.getElementById("checkoutSummary");
 const checkoutTotalPriceEl = document.getElementById("checkoutTotalPrice");
 const checkoutForm = document.getElementById("checkoutForm");
+const productCards = document.querySelectorAll(".product-card");
+const productModal = document.getElementById("productModal");
+const modalCloseBtn = document.getElementById("modalCloseBtn");
+const modalCover = document.getElementById("modalCover");
+const modalTitle = document.getElementById("modalTitle");
+const modalArtist = document.getElementById("modalArtist");
+const modalPrice = document.getElementById("modalPrice");
+const modalDescription = document.getElementById("modalDescription");
+const modalAddBtn = document.getElementById("modalAddBtn");
+const modalBuyBtn = document.getElementById("modalBuyBtn");
+
+let activeModalProduct = null;
 
 const PRODUCTS = [
-  { title: "Paradise", artist: "Lana Del Rey", price: 1650, cover: "IMAGES/PARADISE.png" },
-  { title: "Ctrl", artist: "SZA", price: 1250, cover: "IMAGES/CTRL.png" },
-  { title: "I Know I'm Funny haha", artist: "Faye Webster", price: 900, cover: "IMAGES/IKNOWIMFUNNYHAHA.png" },
-  { title: "Raven", artist: "Kelela", price: 1450, cover: "IMAGES/RAVEN.png" },
-  { title: "Imaginal Disk", artist: "Magdalena Bay", price: 900, cover: "IMAGES/IMAGINALDISK.png" },
-  { title: "Fancy That", artist: "PinkPantheress", price: 1500, cover: "IMAGES/FANCYTHAT.png" }
+  { title: "Paradise", artist: "Lana Del Rey", price: 1650, cover: "IMAGES/PARADISE.png", description: "A moody, atmospheric collection of tracks exploring fame, longing, and the American dream." },
+  { title: "Ctrl", artist: "SZA", price: 1250, cover: "IMAGES/CTRL.png", description: "A defining alt-R&B record about vulnerability, insecurity, and self-discovery." },
+  { title: "I Know I'm Funny haha", artist: "Faye Webster", price: 900, cover: "IMAGES/IKNOWIMFUNNYHAHA.png", description: "Warm, wry indie-folk with pedal steel guitar and disarmingly honest lyrics." },
+  { title: "Raven", artist: "Kelela", price: 1450, cover: "IMAGES/RAVEN.png", description: "A shape-shifting, atmospheric R&B record about grief, intimacy, and rebirth." },
+  { title: "Imaginal Disk", artist: "Magdalena Bay", price: 900, cover: "IMAGES/IMAGINALDISK.png", description: "A hyperpop-tinged concept album about transformation and identity." },
+  { title: "Fancy That", artist: "PinkPantheress", price: 1500, cover: "IMAGES/FANCYTHAT.png", description: "Breezy, drum-and-bass-inspired pop with a nostalgic, diary-entry feel." }
 ];
 
 const CART_KEY = "theme_yay_cart";
@@ -105,19 +117,66 @@ checkoutForm.addEventListener("submit", function (e) {
   showScreen(homeScreen);
 });
 
+function addProductToCart(product) {
+   const existing = cart.find((item) => item.title === product.title);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ ...product, qty: 1 });
+  }
+  saveCart();
+  updateCartUI();
+}
+
 /* Add to cart */
 addButtons.forEach((btn, index) => {
   btn.addEventListener("click", function () {
-    const product = PRODUCTS[index];
-    const existing = cart.find((item) => item.title === product.title);
-    if (existing) {
-      existing.qty += 1;
-    } else {
-      cart.push({ ...product, qty: 1 });
-    }
-    saveCart();
-    updateCartUI();
+    addProductToCart(PRODUCTS[index]);
   });
+});
+
+/* Open product modal on card click */
+productCards.forEach((card, index) => {
+  card.addEventListener("click", function (e) {
+    if (e.target.classList.contains("add-btn")) return;
+
+    const product = PRODUCTS[index];
+    activeModalProduct = product;
+
+    modalCover.src = product.cover;
+    modalCover.alt = product.title + " cover";
+    modalTitle.textContent = product.title;
+    modalArtist.textContent = product.artist;
+    modalPrice.textContent = formatPrice(product.price);
+    modalDescription.textContent = product.description;
+
+    productModal.style.display = "flex";
+  });
+});
+
+/* Close product modal */
+modalCloseBtn.addEventListener("click", function () {
+  productModal.style.display = "none";
+});
+
+productModal.addEventListener("click", function (e) {
+  if (e.target === productModal) {
+    productModal.style.display = "none";
+  }
+});
+
+/* Modal Add to Cart */
+modalAddBtn.addEventListener("click", function () {
+  addProductToCart(activeModalProduct);
+  productModal.style.display = "none";
+});
+
+/* Modal Buy Now */
+modalBuyBtn.addEventListener("click", function () {
+  addProductToCart(activeModalProduct);
+  productModal.style.display = "none";
+  renderCheckoutSummary();
+  showScreen(checkoutScreen);
 });
 
 /* Remove from cart */
