@@ -480,6 +480,8 @@ header button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
 }
 
 .qty-value {
@@ -543,62 +545,102 @@ header button:hover {
     text-align: center;
   }
 
-  header nav {
-    flex-direction: column;
-    width: 100%;
-    gap: 14px;
+header nav {
+  flex-direction: column;
+  width: 100%;
+  gap: 14px;
   }
 
-  .nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px 18px;
-    width: 100%;
-  }
+.nav-links {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
 
-  .product-grid {
-    grid-template-columns: 1fr;
-  }
+.product-grid {
+  grid-template-columns: 1fr;
+}
 
-  main h2 {
-    font-size: 2.2rem;
-  }
+main h2 {
+  font-size: 2.2rem;
+}
 
-  .cart-item {
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto auto auto;
-  }
+.cart-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  grid-template-rows: auto auto auto auto;
+  gap: 8px 16px;
+  align-items: start;
+  padding: 16px;
+  text-align: left;
+}
 
-  .cart-item h3 {
-    grid-column: 1 / -1;
-  }
+.cart-cover {
+  grid-column: 1;
+  grid-row: 1 / 5;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
 
-  .cart-artist {
-    grid-column: 1 / -1;
-  }
+.cart-item h3 {
+  font-size: 1rem;
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+}
 
-  .qty-controls {
-    grid-column: 1 / -1;
-  }
+.cart-artist {
+  grid-column: 2;
+  grid-row: 2;
+  margin: 0;
+}
 
-  .cart-price {
-    grid-column: 1 / -1;
-    text-align: left;
-  }
+.cart-price {
+  font-size: 1rem;
+  grid-column: 2;
+  grid-row: 3;
+  margin: 0;
+  text-align: left;
+}
 
-  .remove-btn {
-    grid-column: 1 / -1;
-    justify-self: start;
-  }
+.qty-controls {
+  grid-column: 2;
+  grid-row: 4;
+  justify-content: flex-start;
+}
 
-  .modal-card {
-    max-width: 90vw;
-    padding: 24px;
-  }
+.remove-btn {
+  grid-column: 2;
+  grid-row: 5;
+  justify-self: start;
+  width: auto;
+}
 
-  .modal-actions {
-    flex-direction: column;
-  }
+.modal-card {
+  max-width: 90vw;
+  padding: 24px;
+}
+
+.modal-actions {
+  flex-direction: column;
+}
+
+body {
+  background-attachment: scroll;
+}
+
+body::after {
+  position: absolute;
+  background-size: cover;
+  background-position: bottom center;
+}
+
+header button {
+  width: 100%;
+  max-width: 220px;
+}
 }
 
 .content-inner {
