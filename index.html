@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="styles.css">
 <script src="script.js" defer></script>
 </head>
-<body>
+<body class="static-page">
 
 <!-- LOGIN SCREEN -->
 
@@ -33,6 +33,12 @@
   <header>
     <h1>Theme Yay's Vinyls</h1>
     <nav>
+     <div class="nav-links">
+        <a href="index.html#home" class="home-nav-link active">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="resources.html">Resources</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
       <button type="button" id="cartNavBtn">Cart (<span id="cartCount">0</span>)</button>
       <button type="button" id="logoutBtn">Log out</button>
     </nav>
@@ -42,46 +48,82 @@
     <h2>This Week's Vinyls</h2>
     <div id="productGrid" class="product-grid">
  
-      <article class="product-card">
+      <!-- Paradise -->
+      <article class="product-card" data-index="0">
+        <img src="IMAGES/PARADISE.png" alt="Paradise" />
         <h3>Paradise</h3>
-        <p>Lana Del Rey</p>
-        <p>₱1,650</p>
-        <button type="button" class="add-btn">Add to Cart</button>
+        <p class="artist">Lana Del Rey</p>
+        <p class="price">₱1,650</p>
+        <p class="description">Lana Del Rey's seventh studio album, featuring a cinematic soundscape and nostalgic Americana.</p>
+        <div class="button-group">
+          <button type="button" class="add-btn" data-index="0">Add to Cart</button>
+          <button type="button" class="buy-btn" data-index="0">Buy Now</button>
+        </div>
       </article>
  
-      <article class="product-card">
+      <!-- Ctrl -->
+      <article class="product-card" data-index="1">
+        <img src="IMAGES/CTRL.png" alt="Ctrl" />
         <h3>Ctrl</h3>
-        <p>SZA</p>
-        <p>₱1,250</p>
-        <button type="button" class="add-btn">Add to Cart</button>
+        <p class="artist">SZA</p>
+        <p class="price">₱1,250</p>
+        <p class="description">SZA's debut studio album, a blend of R&B, soul, and neo-soul with introspective lyrics.</p>
+        <div class="button-group">
+          <button type="button" class="add-btn" data-index="1">Add to Cart</button>
+          <button type="button" class="buy-btn" data-index="1">Buy Now</button>
+        </div>
       </article>
  
-      <article class="product-card">
+      <!-- I Know I'm Funny haha -->
+      <article class="product-card" data-index="2">
+        <img src="IMAGES/IKNOWIMFUNNYHAHA.png" alt="I Know I'm Funny haha" />
         <h3>I Know I'm Funny haha</h3>
-        <p>Faye Webster</p>
-        <p>₱900</p>
-        <button type="button" class="add-btn">Add to Cart</button>
+        <p class="artist">Faye Webster</p>
+        <p class="price">₱900</p>
+        <p class="description">Faye Webster's fourth studio album, blending indie folk, R&B, and country influences.</p>
+        <div class="button-group">
+          <button type="button" class="add-btn" data-index="2">Add to Cart</button>
+          <button type="button" class="buy-btn" data-index="2">Buy Now</button>
+        </div>
       </article>
  
-      <article class="product-card">
+      <!-- Raven -->
+      <article class="product-card" data-index="3">
+        <img src="IMAGES/RAVEN.png" alt="Raven" />
         <h3>Raven</h3>
-        <p>Kelela</p>
-        <p>₱1,450</p>
-        <button type="button" class="add-btn">Add to Cart</button>
+        <p class="artist">Kelela</p>
+        <p class="price">₱1,450</p>
+        <p class="description">Kelela's second studio album, exploring electronic, R&B, and ambient sounds.</p>
+        <div class="button-group">
+          <button type="button" class="add-btn" data-index="3">Add to Cart</button>
+          <button type="button" class="buy-btn" data-index="3">Buy Now</button>
+        </div>
       </article>
  
-      <article class="product-card">
+      <!-- Imaginal Disk -->
+      <article class="product-card" data-index="4">
+        <img src="IMAGES/IMAGINALDISK.png" alt="Imaginal Disk" />
         <h3>Imaginal Disk</h3>
-        <p>Magdalena Bay</p>
-        <p>₱900</p>
-        <button type="button" class="add-btn">Add to Cart</button>
+        <p class="artist">Magdalena Bay</p>
+        <p class="price">₱900</p>
+        <p class="description">Magdalena Bay's debut studio album, a synth-pop journey with dreamy production.</p>
+        <div class="button-group">
+          <button type="button" class="add-btn" data-index="4">Add to Cart</button>
+          <button type="button" class="buy-btn" data-index="4">Buy Now</button>
+        </div>
       </article>
  
-      <article class="product-card">
+      <!-- Fancy That -->
+      <article class="product-card" data-index="5">
+        <img src="IMAGES/FANCYTHAT.png" alt="Fancy That" />
         <h3>Fancy That</h3>
-        <p>PinkPantheress</p>
-        <p>₱1,500</p>
-        <button type="button" class="add-btn">Add to Cart</button>
+        <p class="artist">PinkPantheress</p>
+        <p class="price">₱1,500</p>
+        <p class="description">PinkPantheress's debut mixtape, featuring UK garage and pop-infused tracks.</p>
+        <div class="button-group">
+          <button type="button" class="add-btn" data-index="5">Add to Cart</button>
+          <button type="button" class="buy-btn" data-index="5">Buy Now</button>
+        </div>
       </article>
  
     </div>
@@ -96,6 +138,12 @@
   <header>
     <h1>Your Cart</h1>
     <nav>
+      <div class="nav-links">
+        <a href="index.html#home" class="home-nav-link">Home</a>
+       <a href="about.html">About Us</a>
+       <a href="resources.html">Resources</a>
+       <a href="contact.html">Contact Us</a>
+     </div>
       <button type="button" id="backToHomeBtn">Back to shop</button>
     </nav>
   </header>
@@ -110,6 +158,22 @@
     </div>
   </main>
  
+</div>
+
+<!-- ===== BUY NOW MODAL ===== -->
+<div id="buyModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close-modal" id="closeModal">&times;</span>
+    <img id="modalCover" src="" alt="Cover" />
+    <h2 id="modalTitle"></h2>
+    <p class="modal-artist" id="modalArtist"></p>
+    <p class="modal-description" id="modalDescription"></p>
+    <p class="modal-price" id="modalPrice"></p>
+    <div class="modal-buttons">
+      <button id="modalAddToCart">Add to Cart</button>
+      <button id="modalBuyNow">Buy Now</button>
+    </div>
+  </div>
 </div>
  
 </body>
