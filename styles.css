@@ -36,7 +36,7 @@ body {
     color: var(--c4-ink);
     font-family: var(--f-serif);
     position: relative;
-    min-height: 100vh;
+    min-height: 100%;
     overflow-x: hidden;
   }
 
