@@ -6,6 +6,7 @@ const loginForm = document.getElementById("loginForm");
 const logoutBtn = document.getElementById("logoutBtn");
 const cartNavBtn = document.getElementById("cartNavBtn");
 const backToHomeBtn = document.getElementById("backToHomeBtn");
+const homeNavLinks = document.querySelectorAll(".home-nav-link");
 const cartTotalEl = document.getElementById("cartTotal");
 const cartTotalPriceEl = document.getElementById("cartTotalPrice");
  
@@ -23,8 +24,18 @@ const PRODUCTS = [
   { title: "Fancy That", artist: "PinkPantheress", price: 1500, cover: "IMAGES/FANCYTHAT.png" }
 ];
 
-let cart = [];
+const CART_KEY = "theme_yay_cart";
 
+function loadCart() {
+  const saved = localStorage.getItem(CART_KEY);
+  return saved ? JSON.parse(saved) : [];
+}
+
+function saveCart() {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+}
+
+let cart = loadCart();
 /* Shows one screen, hides the other */
 
 function showScreen(screenToShow) {
@@ -38,7 +49,6 @@ function showScreen(screenToShow) {
 }
 
 /* Login -> Home */
-
 loginForm.addEventListener("submit", function (e) {
   e.preventDefault(); 
   showScreen(homeScreen);
@@ -52,6 +62,14 @@ logoutBtn.addEventListener("click", function () {
 /* Home -> Cart */
 cartNavBtn.addEventListener("click", function () {
   showScreen(cartScreen);
+});
+
+/* Home nav -> Home screen */
+homeNavLinks.forEach(function (link) {
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    showScreen(homeScreen);
+  });
 });
 
 /* Cart -> Home */
@@ -68,7 +86,9 @@ addButtons.forEach((btn, index) => {
       existing.qty += 1;
     } else {
       cart.push({ ...product, qty: 1 });
+      saveCart();
     }
+    saveCart();
     updateCartUI();
   });
 });
@@ -78,8 +98,14 @@ addButtons.forEach((btn, index) => {
 cartItemsEl.addEventListener("click", function (e) {
   if (e.target.classList.contains("remove-btn")) {
     const title = e.target.dataset.title;
-    cart = cart.filter((item) => item.title !== title);
-    updateCartUI();
+    const itemEl = e.target.closest(".cart-item");
+ 
+    itemEl.classList.add("removing");
+    itemEl.addEventListener("animationend", function () {
+      cart = cart.filter((item) => item.title !== title);
+      saveCart();
+      updateCartUI();
+    }, { once: true });
   }
 });
 
@@ -117,3 +143,11 @@ function updateCartUI() {
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
   cartTotalPriceEl.textContent = formatPrice(totalPrice);
 }
+
+updateCartUI();
+if (window.location.hash === "#cart") {
+  showScreen(cartScreen);
+}
+if (window.location.hash === "#home") {
+   showScreen(homeScreen);
+ }

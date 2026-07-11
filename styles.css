@@ -184,7 +184,40 @@ header h1 {
 header nav {
   display: flex;
   gap: 10px;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-end;
 }
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  justify-content: center;
+ }
+
+header nav a {
+   font-family: var(--f-shout);
+   font-size: 0.8rem;
+   letter-spacing: 0.03em;
+   text-transform: uppercase;
+   color: var(--c7-peach);
+   text-decoration: none;
+   border-bottom: 2px solid transparent;
+   padding-bottom: 2px;
+ }
+ 
+header nav a:hover {
+  color: var(--c5-cream);
+ }
+ 
+ header nav a.active {
+  border-bottom-color: var(--c7-peach);
+ }
+
+.static-page {
+  animation: fadeIn 0.4s ease;
+ }
 
 main {
   max-width: 1100px;
@@ -471,4 +504,85 @@ header button:hover {
   .cart-item {
     grid-template-columns: auto 1fr;
   }
+}
+
+.content-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  font-family: var(--f-serif);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--c4-ink);
+}
+
+.content-band {
+  padding: 64px 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.content-band .content-inner {
+  background: var(--c5-cream);
+  border: 2px solid var(--c4-ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-hard);
+  padding: 32px 40px;
+  color: var(--c4-ink);
+  text-align: center;
+}
+
+.resource-list {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.resource-item {
+  background: var(--c5-cream);
+  border: 2px solid var(--c4-ink);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  box-shadow: 3px 3px 0 var(--c4-ink);
+}
+
+.resource-item h3 {
+  font-family: var(--f-display);
+  color: var(--c2-wine);
+  margin-bottom: 6px;
+}
+
+.resource-item p {
+  margin: 0;
+  font-family: var(--f-serif);
+  color: var(--c6-umber);
+}
+
+.contact-form {
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-form label {
+  font-family: var(--f-shout);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--c6-umber);
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px 12px;
+  border: 2px solid var(--c4-ink);
+  border-radius: var(--radius);
+  background: var(--c5-cream);
+  font-family: var(--f-serif);
+  font-size: 1rem;
+  color: var(--c4-ink);
+  resize: vertical;
 }

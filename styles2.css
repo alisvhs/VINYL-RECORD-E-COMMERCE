@@ -1,0 +1,171 @@
+.site-header {
+  background: var(--c1-parchment);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px 32px;
+  border-bottom: 3px solid var(--c4-ink);
+}
+ 
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--f-shout);
+  font-size: 1.4rem;
+  color: var(--c2-wine);
+}
+ 
+.site-logo img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+ 
+.site-nav {
+  display: flex;
+  gap: 28px;
+}
+ 
+.site-nav a {
+  font-family: var(--f-display);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--c4-ink);
+  text-decoration: none;
+}
+ 
+.site-nav a:hover {
+  color: var(--c2-wine);
+}
+ 
+.site-nav a.active {
+  color: var(--c2-wine);
+  border-bottom: 2px solid var(--c3-clay);
+}
+ 
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+ 
+.search-box input {
+  padding: 8px 12px;
+  border: 2px solid var(--c4-ink);
+  border-radius: var(--radius);
+  background: var(--c5-cream);
+  font-family: var(--f-serif);
+  font-size: 0.9rem;
+}
+ 
+.search-icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.6;
+}
+ 
+.cityscape-band {
+  height: 90px;
+  background-image: url("IMAGES/CITYSCAPEBG.png");
+  background-size: cover;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  opacity: 0.35;
+}
+ 
+.page-hero {
+  text-align: center;
+  padding: 56px 24px 40px;
+  background: radial-gradient(circle at 50% 30%, var(--c7-peach) 0%, transparent 65%), var(--c5-cream);
+}
+ 
+.page-hero h1 {
+  font-family: var(--f-display);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--c2-wine);
+  text-shadow: 3px 3px 0 var(--c3-clay);
+}
+ 
+.hero-divider {
+  width: 120px;
+  height: 3px;
+  margin: 24px auto 0;
+  background: var(--c3-clay);
+  border-radius: 2px;
+}
+ 
+.page-content {
+  background: var(--c1-parchment);
+  padding: 64px 24px;
+}
+ 
+.page-content .content-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  font-family: var(--f-serif);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--c4-ink);
+}
+ 
+.resource-list {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+ 
+.resource-item {
+  background: var(--c5-cream);
+  border: 2px solid var(--c4-ink);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  box-shadow: 3px 3px 0 var(--c4-ink);
+}
+ 
+.resource-item h3 {
+  font-family: var(--f-display);
+  color: var(--c2-wine);
+  margin-bottom: 6px;
+}
+ 
+.resource-item p {
+  margin: 0;
+  font-family: var(--f-serif);
+  color: var(--c6-umber);
+}
+ 
+.contact-form {
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+ 
+.contact-form label {
+  font-family: var(--f-shout);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--c6-umber);
+}
+ 
+.contact-form input,
+.contact-form textarea {
+  padding: 10px 12px;
+  border: 2px solid var(--c4-ink);
+  border-radius: var(--radius);
+  background: var(--c5-cream);
+  font-family: var(--f-serif);
+  font-size: 1rem;
+  color: var(--c4-ink);
+  resize: vertical;
+}

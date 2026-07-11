@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="styles.css">
 <script src="script.js" defer></script>
 </head>
-<body>
+<body class="static-page">
 
 <!-- LOGIN SCREEN -->
 
@@ -33,6 +33,12 @@
   <header>
     <h1>Theme Yay's Vinyls</h1>
     <nav>
+     <div class="nav-links">
+        <a href="index.html#home" class="home-nav-link active">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="resources.html">Resources</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
       <button type="button" id="cartNavBtn">Cart (<span id="cartCount">0</span>)</button>
       <button type="button" id="logoutBtn">Log out</button>
     </nav>
@@ -96,6 +102,12 @@
   <header>
     <h1>Your Cart</h1>
     <nav>
+      <div class="nav-links">
+        <a href="index.html#home" class="home-nav-link">Home</a>
+       <a href="about.html">About Us</a>
+       <a href="resources.html">Resources</a>
+       <a href="contact.html">Contact Us</a>
+     </div>
       <button type="button" id="backToHomeBtn">Back to shop</button>
     </nav>
   </header>
