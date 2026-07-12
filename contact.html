@@ -9,6 +9,9 @@
 <body class="static-page">
  
 <header>
+  <button type="button" class="menu-toggle-btn" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
   <h1>Theme Yay's Vinyls</h1>
   <nav>
     <div class="nav-links">
@@ -38,11 +41,42 @@
   </form>
 </main>
  
+<div id="sideMenuOverlay" class="side-menu-overlay"></div>
+<nav id="sideMenu" class="side-menu">
+  <button type="button" id="sideMenuCloseBtn" class="side-menu-close">×</button>
+  <div class="side-menu-links">
+    <a href="index.html#home">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="resources.html">Resources</a>
+    <a href="contact.html" class="active">Contact Us</a>
+    <a href="index.html#cart">Cart</a>
+    <a href="index.html">Log out</a>
+  </div>
+</nav>
+
 <script>
   const savedCart = localStorage.getItem("theme_yay_cart");
   const cart = savedCart ? JSON.parse(savedCart) : [];
   const total = cart.reduce((sum, item) => sum + item.qty, 0);
   document.getElementById("cartCount").textContent = total;
+
+  const menuToggleBtn = document.querySelector(".menu-toggle-btn");
+  const sideMenu = document.getElementById("sideMenu");
+  const sideMenuOverlay = document.getElementById("sideMenuOverlay");
+  const sideMenuCloseBtn = document.getElementById("sideMenuCloseBtn");
+
+  menuToggleBtn.addEventListener("click", function () {
+    sideMenu.classList.add("open");
+    sideMenuOverlay.classList.add("open");
+  });
+
+  function closeSideMenu() {
+    sideMenu.classList.remove("open");
+    sideMenuOverlay.classList.remove("open");
+  }
+
+  sideMenuOverlay.addEventListener("click", closeSideMenu);
+  sideMenuCloseBtn.addEventListener("click", closeSideMenu);
 </script>
 </body>
 </html>

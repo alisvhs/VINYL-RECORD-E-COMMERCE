@@ -23,6 +23,12 @@ const checkoutForm = document.getElementById("checkoutForm");
 const productCards = document.querySelectorAll(".product-card");
 const productModal = document.getElementById("productModal");
 const modalCloseBtn = document.getElementById("modalCloseBtn");
+const menuToggleBtns = document.querySelectorAll(".menu-toggle-btn");
+const sideMenu = document.getElementById("sideMenu");
+const sideMenuOverlay = document.getElementById("sideMenuOverlay");
+const sideMenuCloseBtn = document.getElementById("sideMenuCloseBtn");
+const sideMenuCartLink = document.getElementById("sideMenuCartLink");
+const sideMenuLogoutLink = document.getElementById("sideMenuLogoutLink");
 const modalCover = document.getElementById("modalCover");
 const modalTitle = document.getElementById("modalTitle");
 const modalArtist = document.getElementById("modalArtist");
@@ -54,6 +60,35 @@ function saveCart() {
 }
 
 let cart = loadCart();
+
+function openSideMenu() {
+  sideMenu.classList.add("open");
+  sideMenuOverlay.classList.add("open");
+}
+
+function closeSideMenu() {
+  sideMenu.classList.remove("open");
+  sideMenuOverlay.classList.remove("open");
+}
+
+menuToggleBtns.forEach(function (btn) {
+  btn.addEventListener("click", openSideMenu);
+});
+
+sideMenuOverlay.addEventListener("click", closeSideMenu);
+sideMenuCloseBtn.addEventListener("click", closeSideMenu);
+
+sideMenuCartLink.addEventListener("click", function (e) {
+  e.preventDefault();
+  showScreen(cartScreen);
+  closeSideMenu();
+});
+
+sideMenuLogoutLink.addEventListener("click", function (e) {
+  e.preventDefault();
+  showScreen(loginScreen);
+  closeSideMenu();
+});
 
 /* Shows one screen, hides the other */
 
@@ -88,6 +123,7 @@ homeNavLinks.forEach(function (link) {
   link.addEventListener("click", function (e) {
     e.preventDefault();
     showScreen(homeScreen);
+    closeSideMenu();
   });
 });
 

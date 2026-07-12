@@ -31,6 +31,9 @@
 <div id="homeScreen" class="screen" style="display:none;">
  
   <header>
+    <button type="button" class="menu-toggle-btn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
     <h1>Theme Yay's Vinyls</h1>
     <nav>
      <div class="nav-links">
@@ -100,6 +103,9 @@
 <div id="cartScreen" class="screen" style="display:none;">
  
   <header>
+    <button type="button" class="menu-toggle-btn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
     <h1>Your Cart</h1>
     <nav>
       <div class="nav-links">
@@ -129,6 +135,9 @@
 <div id="checkoutScreen" class="screen" style="display:none;">
 
   <header>
+    <button type="button" class="menu-toggle-btn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
     <h1>Checkout</h1>
     <nav>
       <button type="button" id="backToCartBtn">Back to cart</button>
@@ -174,6 +183,19 @@
     </div>
   </div>
 </div>
+
+<div id="sideMenuOverlay" class="side-menu-overlay"></div>
+<nav id="sideMenu" class="side-menu">
+  <button type="button" id="sideMenuCloseBtn" class="side-menu-close">×</button>
+  <div class="side-menu-links">
+    <a href="index.html#home" class="home-nav-link">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="resources.html">Resources</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="index.html#cart" id="sideMenuCartLink">Cart</a>
+    <a href="#" id="sideMenuLogoutLink">Log out</a>
+  </div>
+</nav>
 
 </body>
 </html>
